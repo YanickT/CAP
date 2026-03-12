@@ -1,5 +1,6 @@
 # Black Hole Parameter Inference from Simulated Images
 ![Spin confusion matrix](results/example_image.png)
+
 This repository contains a small PyTorch-based research project for predicting
 physical black hole parameters from simulated emission images.
 
@@ -53,10 +54,12 @@ Two separate fully connected neural networks are used.
 ## Results
 ![Spin confusion matrix](results/spin_confusion_matrix.png)
 ![Inclination confusion matrix](results/inc_confusion_matrix.png)
+
 Confusion matrices for spin and inclination predictions
 
 ![Spinerror over true spin](results/error(spin).png)
 ![Inclinationerror over true inclination](results/error(inc).png)
+
 Parameter-dependent prediction error.
 
 The models achieve:
