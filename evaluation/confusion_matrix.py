@@ -1,4 +1,4 @@
-from datagen import DataGen
+from src.datagen import DataGen
 from network import SpinNetwork, IncNetwork
 import os
 import random
@@ -6,8 +6,7 @@ import numpy as np
 import torch
 import matplotlib.pyplot as plt
 
-ROOT = "C:/Users/yanic/Documents/GitHub/CAP/"
-path = ROOT + "test"
+path = "./test"
 
 
 cat = lambda value, cats: (np.abs(cats - value)).argmin()
@@ -27,8 +26,8 @@ inc_net = IncNetwork()
 
 print("Load Networks")
 device = torch.device('cpu')
-spin_net.model.load_state_dict(torch.load(f"{ROOT}/Spin_network.net", map_location=device))
-inc_net.model.load_state_dict(torch.load(f"{ROOT}/Inc_network.net", map_location=device))
+spin_net.model.load_state_dict(torch.load(f"./saves/Spin_network.net", map_location=device))
+inc_net.model.load_state_dict(torch.load(f"./saves/Inc_network.net", map_location=device))
 
 print("Save some test data")
 if not os.path.exists("results"):

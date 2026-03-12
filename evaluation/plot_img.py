@@ -9,7 +9,6 @@ from network import SpinNetwork, IncNetwork
 import torch
 
 
-ROOT = "C:/Users/yanic/Documents/GitHub/CAP/"
 functions = {
     "a": (lambda x: float(re.findall("a-?\d+.?\d*", x)[0].replace("a", ""))),
     "inc": (lambda x: float(re.findall("inc\d+", x)[0].replace("inc", "")))
@@ -22,8 +21,8 @@ inc_net = IncNetwork()
 
 print("Load Networks")
 device = torch.device('cpu')
-spin_net.model.load_state_dict(torch.load(f"{ROOT}/Spin_network.net", map_location=device))
-inc_net.model.load_state_dict(torch.load(f"{ROOT}/Inc_network.net", map_location=device))
+spin_net.model.load_state_dict(torch.load(f"./saves/Spin_network.net", map_location=device))
+inc_net.model.load_state_dict(torch.load(f"./saves/Inc_network.net", map_location=device))
 
 def plotriafquick(infile):
     # load file
@@ -115,9 +114,9 @@ def muscale(mbh, dbh, width):
     return muasscale
 
 
-path = f"{ROOT}/test"
+path = f"./test"
 
 test_files = [file for file in os.listdir(path) if file[-4:] == ".npz"]
 random.shuffle(test_files)
 for file in test_files:
-    plotriafquick(f"{ROOT}/test/{file}")
+    plotriafquick(f"./test/{file}")

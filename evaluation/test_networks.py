@@ -1,4 +1,4 @@
-from datagen import DataGen
+from src.datagen import DataGen
 from network import SpinNetwork, IncNetwork
 import os
 import random
@@ -7,8 +7,7 @@ import torch
 import matplotlib.pyplot as plt
 
 
-ROOT = "C:/Users/yanic/Documents/GitHub/CAP/"
-path = r"C:\Users\yanic\Documents\GitHub\CAP\test"
+path = "./test"
 
 
 print("Create Dataloader")
@@ -24,12 +23,12 @@ inc_net = IncNetwork()
 
 print("Load Networks")
 device = torch.device('cpu')
-spin_net.model.load_state_dict(torch.load(f"{ROOT}/Spin_network.net", map_location=device))
-inc_net.model.load_state_dict(torch.load(f"{ROOT}/Inc_network.net", map_location=device))
+spin_net.model.load_state_dict(torch.load(f"./saves/Spin_network.net", map_location=device))
+inc_net.model.load_state_dict(torch.load(f"./saves/Inc_network.net", map_location=device))
 
 print("Save some test data")
-if not os.path.exists(f"{ROOT}/results"):
-    os.mkdir(f"{ROOT}/results")
+if not os.path.exists(f"./results"):
+    os.mkdir(f"./results")
 
 diffs = []
 
@@ -45,7 +44,7 @@ for i, ((spin_img, spin_target), (inc_img, inc_target)) in enumerate(zip(spin_te
             diffs.append((abs(is_spin - estimate_spin), abs(is_inc - estimate_inc)))
             plt.title(
                 f"Spin: {is_spin: .2f}  Estimation: {estimate_spin: .2f} | Inc: {is_inc: .2f} Estimation: {estimate_inc: .2f}")
-            plt.savefig(f"{ROOT}/results/Test_{j}.png")
+            plt.savefig(f"./results/Test_{j}.png")
     break
 
 spin_diffs, inc_diffs = tuple(zip(*diffs))

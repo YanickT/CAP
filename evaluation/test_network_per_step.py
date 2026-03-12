@@ -1,4 +1,4 @@
-from datagen import DataGen
+from src.datagen import DataGen
 from network import SpinNetwork, IncNetwork
 import os
 import random
@@ -6,7 +6,7 @@ import numpy as np
 import torch
 import matplotlib.pyplot as plt
 
-path = "C:/Users/yanic/Documents/GitHub/CAP/test"
+path = "./test"
 
 print("Create Dataloader")
 test_files = [file for file in os.listdir(path) if file[-4:] == ".npz"]
@@ -21,8 +21,8 @@ inc_net = IncNetwork()
 
 print("Load Networks")
 device = torch.device('cpu')
-spin_net.model.load_state_dict(torch.load("C:/Users/yanic/Documents/GitHub/CAP/Spin_network.net", map_location=device))
-inc_net.model.load_state_dict(torch.load("C:/Users/yanic/Documents/GitHub/CAP/Inc_network.net", map_location=device))
+spin_net.model.load_state_dict(torch.load("./saves/Spin_network.net", map_location=device))
+inc_net.model.load_state_dict(torch.load("./saves/Inc_network.net", map_location=device))
 
 spin_diffs = {}  # spin_diffs[spin] = List[diffs]
 inc_diffs = {}  # inc_diffs[spin] = List[diffs]
